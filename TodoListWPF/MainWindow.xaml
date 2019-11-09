@@ -5,8 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TodoListWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Background="White" AllowsTransparency="True" WindowStyle="None">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100">
+                
+            </RowDefinition>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="23*"/>
+            <ColumnDefinition Width="65*"/>
+        </Grid.ColumnDefinitions>
+        <Border Background="#FF383737" Grid.Column="0" Grid.Row="0">
+            
+        </Border>
+        <Border Background="#FF383737" Grid.Column="0" Grid.Row="1">
+
+        </Border>
+        <Border Background="White" Grid.Column="1" Grid.Row="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0">
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="72" >
+                        <Button Content="_"  Style="{DynamicResource buttons}"/>
+                        <Button Content="X"  x:Name="btn_kapat" Click="Btn_kapat_Click" Style="{DynamicResource buttons}"/>
+                    </DockPanel>
+                </Border>
+            </Grid>
+        </Border>
+        <Border Background="White" Grid.Column="1" Grid.Row="1">
+
+        </Border>
     </Grid>
 </Window>
