@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TodoListWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="White" AllowsTransparency="True" WindowStyle="None">
+        Title="MainWindow" Style="{DynamicResource window}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100">
@@ -39,7 +39,7 @@
             </Grid>
         </Border>
         <Border Background="White" Grid.Column="1" Grid.Row="1">
-
+            
         </Border>
     </Grid>
 </Window>
