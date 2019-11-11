@@ -13,7 +13,8 @@ namespace TodoListWPF.Helpers
         public static string Hash (string password)
             {
             var sha1 = new SHA1CryptoServiceProvider();
-            var data = Convert.FromBase64String(password);
+           // var data = Convert.FromBase64String(password);
+           var data = UTF8Encoding.UTF8.GetBytes(password);
             var sha1data = sha1.ComputeHash(data);
             return  System.Text.Encoding.UTF8.GetString(sha1data);
         }

@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TodoListWPF.Model;
 namespace TodoListWPF
 {
@@ -21,7 +12,7 @@ namespace TodoListWPF
     {
         public Login()
         {
-            
+
             InitializeComponent();
         }
 
@@ -40,58 +31,74 @@ namespace TodoListWPF
         {
 
             var register = new Register();
-           
+
             register.Left = Left;
             register.Top = Top;
             register.Show();
             this.Close();
-            
-            
+
+
         }
-       
+
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            if(Username.Text != string.Empty && Password.Password != string.Empty)
+            if (Username.Text != string.Empty && Password.Password != string.Empty)
             {
                 try
                 {
-                    using (TodoList context = new TodoList())
+                    if (LoginUser(Username.Text, Password.Password))
                     {
-                        var user = context.Users.Where(x => x.Username == Username.Text).FirstOrDefault();
-
-                        if (user != null  )
-                        {
-                            
-                            if(user.Password  == Helpers.PasswordHash.Hash(Password.Password))
-                            {
-                                var mainWindow = new MainWindow(user.Username);
-                                mainWindow.Left = Left;
-                                mainWindow.Top = Top;
-                                mainWindow.Show();
-                                this.Close();
-                            }
-
-                            
-                        }
-                        else
-                        {
-                        
-                        }
+                        var mainWindow = new MainWindow(Username.Text);
+                        mainWindow.Left = Left;
+                        mainWindow.Top = Top;
+                        mainWindow.Show();
+                        this.Close();
                     }
 
 
-                       
+
+
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                   
+
                 }
 
 
-              
+
             }
 
-          
+
+        }
+        public  bool LoginUser(string username, string password)
+        {
+            try
+            {
+                using (TodoList context = new TodoList())
+                {
+                    var user = context.Users.Where(x => x.Username == username).FirstOrDefault();
+
+                    if (user != null)
+                    {
+                        if (user.Password == Helpers.PasswordHash.Hash(password))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         private void Minimize_Click(object sender, RoutedEventArgs e)
@@ -104,6 +111,6 @@ namespace TodoListWPF
             this.DragMove();
         }
 
-     
+
     }
 }
