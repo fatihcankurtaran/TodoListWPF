@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using TodoListWPF.Model;
 namespace TodoListWPF
 {
     /// <summary>
@@ -51,7 +51,59 @@ namespace TodoListWPF
        
         private void Login_Click(object sender, RoutedEventArgs e)
         {
+            if(Username.Text != string.Empty && Password.Password != string.Empty)
+            {
+                try
+                {
+                    using (TodoList context = new TodoList())
+                    {
+                        var user = context.Users.Where(x => x.Username == Username.Text).FirstOrDefault();
 
+                        if (user != null  )
+                        {
+                            
+                            if(user.Password  == Helpers.PasswordHash.Hash(Password.Password))
+                            {
+                                var mainWindow = new MainWindow(user.Username);
+                                mainWindow.Left = Left;
+                                mainWindow.Top = Top;
+                                mainWindow.Show();
+                                this.Close();
+                            }
+
+                            
+                        }
+                        else
+                        {
+                        
+                        }
+                    }
+
+
+                       
+                }
+                catch(Exception ex)
+                {
+                   
+                }
+
+
+              
+            }
+
+          
         }
+
+        private void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void Button_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+     
     }
 }

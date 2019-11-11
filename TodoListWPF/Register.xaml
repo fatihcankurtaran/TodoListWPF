@@ -19,7 +19,7 @@
             <ColumnDefinition Width="65*"/>
         </Grid.ColumnDefinitions>
         <Border Background="#FF383737" Grid.Column="0" Grid.Row="0">
-
+    
         </Border>
         <Border Background="#FF383737" Grid.Column="0" Grid.Row="1">
 
@@ -30,12 +30,25 @@
                     <RowDefinition Height="35"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0">
-                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="72" >
-                        
-                        <Button Content="_"  Style="{DynamicResource buttons}"/>
-                        <Button Content="X"  x:Name="btn_kapat" Click="Btn_kapat_Click" Style="{DynamicResource buttons}"/>
-                    </DockPanel>
+                <Border Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#FF383737" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="80"/>
+
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" >
+                            <Button PreviewMouseLeftButtonDown="Button_PreviewMouseLeftButtonDown"  Background="White" BorderThickness="0,0,0,0" Style="{DynamicResource head}"></Button>
+                        </Border>
+                        <Border Grid.Column="1">
+                            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="72" >
+                                <Button Content="_"  Style="{DynamicResource buttons}" Name="Minimize" Click="Minimize_Click"/>
+                                <Button Content="X"  x:Name="btn_kapat" Click="Btn_kapat_Click" Style="{DynamicResource buttons}"/>
+                            </DockPanel>
+                        </Border>
+
+                    </Grid>
+
                 </Border>
                 <Border Grid.Row="1">
                     <Label  FontSize="40" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Register"></Label>
@@ -65,11 +78,11 @@
 
                 </Border>
                 <Label Grid.Row="0" FontSize="20" FontWeight="Bold" HorizontalAlignment="left" VerticalAlignment="Bottom" Content="Name"></Label>
-                <TextBox Grid.Row="0"  FontSize="20" FontWeight="Bold" Width="200"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="LightGray" Name="FirstName"></TextBox>
+                <TextBox  Grid.Row="0"  FontSize="20" FontWeight="Bold" Width="200"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="LightGray" Name="FirstName"></TextBox>
                 <Label Grid.Row="1" FontSize="20" FontWeight="Bold" HorizontalAlignment="left" VerticalAlignment="Bottom" Content="Surname"></Label>
-                <TextBox Grid.Row="1" FontSize="20" FontWeight="Bold" Width="200"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="LightGray" Name="Surname"></TextBox>
+                <TextBox  Grid.Row="1" FontSize="20" FontWeight="Bold" Width="200"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="LightGray" Name="Surname"></TextBox>
                 <Label Grid.Row="2" FontSize="20" FontWeight="Bold" HorizontalAlignment="left" VerticalAlignment="Bottom" Content="Username"></Label>
-                <TextBox Grid.Row="2" FontSize="20" FontWeight="Bold" Width="200"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="LightGray" Name="Username"></TextBox>
+                <TextBox  Grid.Row="2" FontSize="20" FontWeight="Bold" Width="200"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="LightGray" Name="Username"></TextBox>
                 <Label Grid.Row="3"  FontSize="20" FontWeight="Bold" HorizontalAlignment="left" VerticalAlignment="Bottom" Content="Password" ></Label>
                 <PasswordBox Grid.Row="3" FontSize="20" FontWeight="Bold" Width="200"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="LightGray" Name="Password"></PasswordBox>
                 <Button Style="{DynamicResource buttons}" Grid.Row="4" Width="200" HorizontalAlignment="Left" Margin="50,1,0,1" Background="LightGray" Content="Cancel" Name="LoginButton" Click="Login_Click" FontWeight="Bold"/>

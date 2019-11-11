@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using TodoListWPF.Model;
 namespace TodoListWPF
 {
     /// <summary>
@@ -54,7 +54,7 @@ namespace TodoListWPF
                     warning += Surname.Text == string.Empty ? "Surname " : "";
                     warning += Username.Text == string.Empty ? "Username " : "";
                     warning += Password.Password == string.Empty ? "Password " : "";
-                    warning+= "is Empty!";
+                    warning += "is Empty!";
                     Warning.Text = warning;
                     warning = "";
                 }
@@ -68,7 +68,7 @@ namespace TodoListWPF
                         var user = new User();
                         user.Name = FirstName.Text;
                         user.Surname = Surname.Text;
-                        user.Password = Password.Password;
+                        user.Password = Helpers.PasswordHash.Hash(Password.Password);
                         user.Username = Username.Text;
                         context.Users.Add(user);
                         context.SaveChanges();
@@ -78,8 +78,12 @@ namespace TodoListWPF
                             Password.Password= string.Empty;
                             Warning.Foreground = Brushes.Green;
                             Warning.Text = "Registered Successfully";
-                           
-                            
+                            var login = new Login();
+                            login.Top = Top;
+                            login.Left = Left;
+                            login.Show();
+                            this.Close();
+
 
                         }
                        else
@@ -104,6 +108,26 @@ namespace TodoListWPF
         private void Register_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Password_TextInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        private void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void Minimize_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

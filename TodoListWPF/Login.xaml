@@ -30,12 +30,25 @@
                     <RowDefinition Height="35"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0">
-                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="72" >
+                <Border Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#FF383737" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="80"/>
 
-                        <Button Content="_"  Style="{DynamicResource buttons}"/>
-                        <Button Content="X"  x:Name="btn_kapat" Click="Btn_kapat_Click" Style="{DynamicResource buttons}"/>
-                    </DockPanel>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" >
+                            <Button PreviewMouseLeftButtonDown="Button_PreviewMouseLeftButtonDown" Background="White" BorderThickness="0,0,0,0" Style="{DynamicResource head}"></Button>
+                        </Border>
+                        <Border Grid.Column="1">
+                            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="72" >
+                                <Button Content="_"  Style="{DynamicResource buttons}" Name="Minimize" Click="Minimize_Click"/>
+                                <Button Content="X"  x:Name="btn_kapat" Click="Btn_kapat_Click" Style="{DynamicResource buttons}"/>
+                            </DockPanel>
+                        </Border>
+
+                    </Grid>
+
                 </Border>
                 <Border Grid.Row="1">
                     <Label  FontSize="40" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Login"></Label>

@@ -67,6 +67,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DTO\BaseDTO.cs" />
+    <Compile Include="DTO\TaskDTO.cs" />
+    <Compile Include="Helpers\PasswordHash.cs" />
+    <Compile Include="Migrations\201911101812332_TaskList and Task.cs" />
+    <Compile Include="Migrations\201911101812332_TaskList and Task.designer.cs">
+      <DependentUpon>201911101812332_TaskList and Task.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911101830500_correction.cs" />
+    <Compile Include="Migrations\201911101830500_correction.designer.cs">
+      <DependentUpon>201911101830500_correction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911101832252_correction2.cs" />
+    <Compile Include="Migrations\201911101832252_correction2.designer.cs">
+      <DependentUpon>201911101832252_correction2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911102211173_task changed.cs" />
+    <Compile Include="Migrations\201911102211173_task changed.designer.cs">
+      <DependentUpon>201911102211173_task changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911102236596_tasks.cs" />
+    <Compile Include="Migrations\201911102236596_tasks.designer.cs">
+      <DependentUpon>201911102236596_tasks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Base.cs" />
     <Compile Include="Migrations\201911092259154_init.cs" />
     <Compile Include="Migrations\201911092259154_init.designer.cs">
       <DependentUpon>201911092259154_init.cs</DependentUpon>
@@ -76,10 +100,13 @@
       <DependentUpon>201911092305192_user.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\Task.cs" />
+    <Compile Include="Model\TaskList.cs" />
     <Compile Include="Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TodoList.cs" />
+    <Compile Include="Model\TodoList.cs" />
+    <Compile Include="Model\User.cs" />
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -123,6 +150,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911092305192_user.resx">
       <DependentUpon>201911092305192_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911101812332_TaskList and Task.resx">
+      <DependentUpon>201911101812332_TaskList and Task.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911101830500_correction.resx">
+      <DependentUpon>201911101830500_correction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911101832252_correction2.resx">
+      <DependentUpon>201911101832252_correction2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911102211173_task changed.resx">
+      <DependentUpon>201911102211173_task changed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911102236596_tasks.resx">
+      <DependentUpon>201911102236596_tasks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

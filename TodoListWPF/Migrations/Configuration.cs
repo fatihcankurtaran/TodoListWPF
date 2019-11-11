@@ -4,15 +4,16 @@
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using TodoListWPF.Model;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<TodoListWPF.TodoList>
+    internal sealed class Configuration : DbMigrationsConfiguration<TodoListWPF.Model.TodoList>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(TodoListWPF.TodoList context)
+        protected override void Seed(TodoListWPF.Model.TodoList context)
         {
             //  This method will be called after migrating to the latest version.
 
@@ -23,7 +24,7 @@
             user.Name = "Fatih";
             user.Surname = "Cankurtaran";
             user.Username = "test";
-            user.Password = "test";
+            user.Password = "fBV�jJ[Ю�%��ڮw";
             context.Users.AddOrUpdate(user); 
 
 

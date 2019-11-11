@@ -6,40 +6,355 @@
         xmlns:local="clr-namespace:TodoListWPF"
         mc:Ignorable="d"
         Title="MainWindow" Style="{DynamicResource window}">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100">
-                
+
             </RowDefinition>
             <RowDefinition/>
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="23*"/>
-            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="28*"/>
+            <ColumnDefinition Width="54*"/>
         </Grid.ColumnDefinitions>
         <Border Background="#FF383737" Grid.Column="0" Grid.Row="0">
-            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"  />
+                    <RowDefinition Height="38"/>
+                    <RowDefinition/>
+
+
+
+
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="White"></Border>
+                <Border Grid.Row="1" BorderThickness="0,0,0,1" BorderBrush="White" ></Border>
+                <Border Grid.Row="2" BorderThickness="0,0,0,1" BorderBrush="White">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="275"/>
+                            <ColumnDefinition Width="35"/>
+
+                        </Grid.ColumnDefinitions>
+                        <TextBox Margin="0,0,0,0"  MaxLength="30" Height="26" Grid.Column="0" Text="" FontSize ="15" Foreground="White" VerticalAlignment="Bottom" Name="TaskListInput" Background="#FFA29F9F" BorderThickness="0,0,0,0" />
+                        <Button Name ="AddTask" Click="AddTask_Click" Grid.Column="1"  Style="{DynamicResource buttons}" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Add" ></Button>
+                    </Grid>
+                </Border>
+
+
+                <Label Grid.Row="0"  FontSize="20" FontWeight="DemiBold" Foreground="WhiteSmoke" HorizontalAlignment="Center" VerticalAlignment="Center" >TodoList App</Label>
+                <Label Grid.Row="1"  Name ="header"  FontSize="18" FontWeight="DemiBold" Foreground="WhiteSmoke" HorizontalAlignment="Center" VerticalAlignment="Top"  >Todo Lists</Label>
+
+            </Grid>
+
         </Border>
         <Border Background="#FF383737" Grid.Column="0" Grid.Row="1">
+            <ListBox  x:Name="MainTaskList"  >
+                <ListBox.ItemTemplate  >
+                    <DataTemplate  >
+                        
+                        <Grid Margin="0,-22,-30,-5" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="220" SharedSizeGroup="Key" />
+                                <ColumnDefinition Width="40" />
+
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderThickness="0,0,0,0" BorderBrush="DarkGray">
+                                <Button Content="{Binding Name}" Tag="{Binding Id}" Name="selectedList" Click="SelectedList_Click" Grid.Column="0" Margin="-35,20,0,15" Background="Transparent" BorderThickness="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                        Width="240"  Style="{DynamicResource taskListItem}">
+                                </Button>
+                                
+                                
+                            </Border>
+                            <Border Grid.Column="1">
+                                <Button  Width="40"   Content="Delete" Name="DeleteButton" Click="DeleteButton_Click" Tag="{Binding Id}" Height="40" Style="{DynamicResource buttons}"   ></Button>
+
+                            </Border>
+
+                        </Grid>
+                        
+                    </DataTemplate>
+                    
+                </ListBox.ItemTemplate>
+                <ListBox.Resources  >
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
+                  Padding="{TemplateBinding Control.Padding}"
+                  BorderBrush="{TemplateBinding Border.BorderBrush}"
+                  Background="{TemplateBinding Panel.Background}"
+                  Name="Bd"
+                  SnapsToDevicePixels="True">
+                                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}"
+                               ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+                               ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
+                               HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                               VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                               SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                                                <Condition Property="Selector.IsSelected" Value="True"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Panel.Background" TargetName="Bd" 
+                        Value="Transparent"/>
+                                            <Setter Property="Border.BorderBrush" TargetName="Bd">
+                                                <Setter.Value>
+                                                    <SolidColorBrush>#FFFFFFFF</SolidColorBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </MultiTrigger>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="Selector.IsSelectionActive" Value="True"/>
+                                                <Condition Property="Selector.IsSelected" Value="True"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Panel.Background" TargetName="Bd" Value="Transparent"/>
+                                            <Setter Property="Border.BorderBrush" TargetName="Bd">
+                                                <Setter.Value>
+                                                    <SolidColorBrush>#FFFFFFFF</SolidColorBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </MultiTrigger>
+                                        <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                            <Setter Property="Panel.Background" TargetName="Bd" 
+                       Value="White"/>
+                                            <Setter Property="Border.BorderBrush" TargetName="Bd">
+                                                <Setter.Value>
+                                                    <SolidColorBrush>#FFFFFFFF</SolidColorBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                        <Trigger Property="UIElement.IsEnabled" Value="False">
+                                            <Setter Property="TextElement.Foreground" TargetName="Bd">
+                                                <Setter.Value>
+                                                    <DynamicResource ResourceKey="{x:Static SystemColors.GrayTextBrushKey}" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                </ListBox.Resources>
+
+            </ListBox>
 
         </Border>
         <Border Background="White" Grid.Column="1" Grid.Row="0">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="35"></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="35" ></RowDefinition>
+                    <RowDefinition Height="38" ></RowDefinition>
+                    <RowDefinition/>
+
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0">
-                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="72" >
-                        <Button Content="_"  Style="{DynamicResource buttons}"/>
-                        <Button Content="X"  x:Name="btn_kapat" Click="Btn_kapat_Click" Style="{DynamicResource buttons}"/>
-                    </DockPanel>
+                <Border Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="#FF383737" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="80"/>
+
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" >
+                            <Button PreviewMouseLeftButtonDown="Rectangle_MouseDown" Background="White" BorderThickness="0,0,0,0" Style="{DynamicResource head}"></Button>
+                        </Border>
+                        <Border Grid.Column="1">
+                            <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="72" >
+                                <Button Content="_"  Style="{DynamicResource buttons}" Name="Minimize" Click="Minimize_Click"/>
+                                <Button Content="X"  x:Name="btn_kapat" Click="Btn_kapat_Click" Style="{DynamicResource buttons}"/>
+                            </DockPanel>
+                        </Border>
+                        
+                    </Grid>
+                    
+                </Border>
+                <Border Grid.Row="1" BorderThickness="0,0,0,1" BorderBrush="#FF383737" Background="#FFA29F9F" >
+                    <Label Foreground="WhiteSmoke" FontSize="19" FontWeight="Bold" HorizontalAlignment="Center">Tasks</Label>
+                </Border>
+                <Border Grid.Row="2" BorderThickness="0,0,0,1" BorderBrush="#FF383737" Background="#FFA29F9F" >
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition/>
+                            
+
+
+
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition />
+
+                                </Grid.ColumnDefinitions> 
+                                <Label Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="#FF555555" HorizontalAlignment="Left">Filter</Label>
+                                <CheckBox Name="IsCompleted" Grid.Column="1" Checked="IsCompleted_Checked" VerticalAlignment="Center" IsChecked="False" Unchecked="IsCompleted_Unchecked">
+                                Completed 
+                                </CheckBox>
+                                <CheckBox Name="IsExpired"  Grid.Column="2" Checked="IsExpired_Checked" VerticalAlignment="Center" Unchecked="IsExpired_Unchecked" IsChecked="False" >
+                                Expired
+                                </CheckBox>
+                                <Border Grid.Column="3" Background="White" BorderBrush="#FF383737"  BorderThickness="1,0,1,0" >
+                                    <TextBox   Name="Search" SelectionChanged="Search_SelectionChanged" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Padding="0,5" Height="28" SelectionBrush="DarkGray" SelectionOpacity="0.25" >
+
+                                    </TextBox>
+                                </Border>
+                            </Grid>
+                            
+                        </Border>
+                        <Border Grid.Column="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0">Order</Label>
+                                <ComboBox Grid.Column="1" Name="OrderComboBox" DropDownClosed="OrderComboBox_DropDownClosed" BorderBrush="White">
+                                    <ComboBox.Background>
+                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                            <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                            <GradientStop Color="#FFE2E2E2" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </ComboBox.Background>
+                                    <ComboBoxItem Content="Created Date"/>
+                                    <ComboBoxItem Content="Deadline"/>
+                                    <ComboBoxItem Content="Name"/>
+                                    <ComboBoxItem Content="Status"/>
+
+
+
+                                </ComboBox>
+
+                            </Grid>
+                        </Border>
+                        
+
+                    </Grid>
+
                 </Border>
             </Grid>
         </Border>
         <Border Background="White" Grid.Column="1" Grid.Row="1">
-            
+            <Grid Name="TaskGrid" Visibility="Hidden" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="280"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="325"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="65"/>
+                            <ColumnDefinition/>
+
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" BorderThickness="1,1,1,1">Task Name and Description</TextBox>
+                        <TextBox Grid.Column="1" BorderThickness="1,1,1,1">Deadline</TextBox>
+                        <TextBox Grid.Column="2" BorderThickness="1,1,1,1">Created</TextBox>
+                        <TextBox Grid.Column="3" BorderThickness="1,1,1,1">Completed</TextBox>
+                        <TextBox Grid.Column="4" BorderThickness="1,1,1,1">Action</TextBox>
+
+
+
+                    </Grid>
+                </Border>
+                <Border Grid.Row="1">
+                    <ListBox  x:Name="Tasks"  BorderBrush="White" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Stretch" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="320" SharedSizeGroup="Key"/>
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="52" />
+                                        <ColumnDefinition Width="55" />
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition Width="60" />
+
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column="0">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" VerticalAlignment="Bottom"  Margin="0,0,2,0" Text="{Binding Name}"  FontSize="11" FontWeight="bold" Width="320"/>
+                                            <TextBlock Grid.Row="1" VerticalAlignment="Bottom"  Margin="0,0,2,0" Text="{Binding Description}"  FontSize="11" FontWeight="Light" Width="320"/>
+
+                                        </Grid>
+                                        
+                                    </Border>
+                                    
+                                    <TextBlock Grid.Column="2" VerticalAlignment="Bottom"  Margin="0,0,2,0" Text="{Binding Deadline}"  FontSize="10" FontWeight="Medium" />
+                                    <TextBlock Grid.Column="3" VerticalAlignment="Bottom"  Margin="0,0,2,0" Text="{Binding CreatedDate}"  FontSize="10" FontWeight="Medium" />
+                                    <CheckBox Grid.Column="4" Content="" Name="ItemCompleted" VerticalAlignment="Bottom" Checked="ItemCompleted_Checked" Unchecked="ItemCompleted_Unchecked" Margin="10,0,0,0" IsChecked="{Binding IsCompleted}"  Tag="{Binding Id}" FontSize="11" FontWeight="Medium" Width="240"/>
+
+                                    <Button Grid.Column="5" Width="60" Content="Delete Item" Name="DeleteItem" Click="DeleteItem_Click" Tag="{Binding Id}" Height="20" Style="{DynamicResource buttons}"   ></Button>
+
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+                </Border>
+                <Border Grid.Row="2">
+                    <Grid Name="AddItemGrid" Background="#FFA29F9F">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" BorderThickness="0,1,0,1" BorderBrush="#FF383737">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="120"/>
+
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" >Name:</Label>
+                                <TextBox Grid.Column="1" MaxLength="35" Name="ItemName" ></TextBox>
+                                <Label Grid.Column="2" >Deadline</Label>
+                                <DatePicker Grid.Column="3" Name="Deadline" ></DatePicker>
+
+                            </Grid>
+                        </Border>
+                        <Border Grid.Row="1" >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="80" />
+
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0">Description:</Label>
+                                <TextBox Grid.Column="1" MaxLength="41" Background="White" Name="Description"></TextBox>
+                                <Button Grid.Column="2" Height="30" Name="AddItem" Click="AddItem_Click"  Width="80" Style="{DynamicResource buttons }">Add</Button>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+
+            </Grid>
         </Border>
     </Grid>
 </Window>

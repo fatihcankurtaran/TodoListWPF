@@ -1,8 +1,10 @@
-namespace TodoListWPF
+using System;
+using System.Data.Entity;
+using System.Linq;
+using TodoListWPF.Model;
+namespace TodoListWPF.Model
 {
-    using System;
-    using System.Data.Entity;
-    using System.Linq;
+   
 
     public class TodoList : DbContext
     {
@@ -21,16 +23,11 @@ namespace TodoListWPF
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
          public virtual DbSet<User> Users { get; set; }
-    }
-
-    public class User
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+         public virtual DbSet<TaskList> TaskLists { get; set; }
+        public virtual DbSet<Task> Tasks { get; set; }
 
 
     }
+
+
 }
