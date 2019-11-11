@@ -76,6 +76,7 @@ namespace TodoListWPF
                             context.TaskLists.Add(tasklist);
                             context.SaveChanges();
                             MainTaskList.ItemsSource = context.TaskLists.Where(x => x.IsDeleted == false && x.CreatedUserId == user.Id).ToList();
+                            TaskListInput.Text = string.Empty;
                         }
                     }
                 }
@@ -206,6 +207,9 @@ namespace TodoListWPF
                         context.Tasks.Add(task);
                         context.SaveChanges();
                         updateTasks();
+                        Deadline.Text = string.Empty;
+                        Description.Text = string.Empty;
+                        ItemName.Text = string.Empty;
                     }
                 }
                 else

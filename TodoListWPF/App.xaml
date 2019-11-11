@@ -35,11 +35,13 @@
             </Setter>
         </Style>
         <Style x:Key="window" TargetType="Window">
-            <Setter Property="Height" Value="450"/>
+            <Setter Property="Height" Value="452"/>
             <Setter Property="Width" Value="900"/>
             <Setter Property="Background" Value="White"/>
             <Setter Property="AllowsTransparency" Value="True"/>
             <Setter Property="WindowStyle" Value="None"/>
+            <Setter Property="BorderThickness" Value="1,1,1,1"/>
+            <Setter Property="BorderBrush" Value="#FF383838"/>
         </Style>
         <Style x:Key="taskListItem" TargetType="Button">
             <Setter Property="Foreground" Value="#FF383737"/>
