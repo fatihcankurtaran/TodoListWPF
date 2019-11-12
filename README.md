@@ -11,7 +11,9 @@ Documentation for installing and running the application
 	
 	Project written on Visual Studio 2017 Enterprise 2017 Version 15.9 and .Net Framework Version 4.6.1 
 	Wait until project is ready 
-4.Change connectionString data source value to with your local db name 
+4.Open App.config file in TodoListWPF Project and UnitTests Project 
+	
+	Change connectionString data source values to with your local db name 
 
 4.Press Package Manager Console
 
