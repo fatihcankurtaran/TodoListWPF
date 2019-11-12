@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using TodoListWPF.Model;
+
 namespace TodoListWPF
 {
     /// <summary>
