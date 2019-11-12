@@ -11,17 +11,20 @@ Documentation for installing and running the application
 	
 	Project written on Visual Studio 2017 Enterprise 2017 Version 15.9 and .Net Framework Version 4.6.1 
 	Wait until project is ready 
+4.Open App.config file in TodoListWPF Project and UnitTests Project 
 	
-3.Press Package Manager Console
+	Change connectionString data source values to with your local db name 
 
-4.It may warn about missing packages 
+4.Press Package Manager Console
+
+5.It may warn about missing packages 
 	
 	click Restore to restore packages 
-5.Write "update-database" and wait until completed
+6.Write "update-database" and wait until completed
 	
-6.Press start to run poject 
+7.Press start to run poject 
 
-7.You can login as following user 
+8.You can login as following user 
 	username : test 
 	password : Test3* 
 
