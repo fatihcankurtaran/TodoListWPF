@@ -20,7 +20,13 @@ namespace UnitTests
         {
             Register register = new Register();
             Random rnd = new Random();
-            Assert.IsTrue((register.RegisterUser("Fatih", "Cankurtaran",rnd.Next(1000,10000).ToString(), "1Test*") == "OK") && (register.RegisterUser("Fatih", "Cankurtaran", rnd.Next(1000, 10000).ToString(), "1Te") != "OK")); 
+            var username= rnd.Next(1000, 10000).ToString();
+            var result = register.RegisterUser("Fatih", "Cankurtaran", username, "1Test*");
+            using (TodoListWPF.Model.TodoList context = new TodoListWPF.Model.TodoList())
+            {
+              var user=   context.Users.Where(x => x.Username == username).FirstOrDefault();
+                    Assert.IsTrue(user != null && result == "OK");
+            }
         }
         [TestMethod]
         public void ValidationWrongPasswordTest()
